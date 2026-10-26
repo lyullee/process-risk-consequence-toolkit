@@ -1,0 +1,351 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "DenseReceptor": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "downwind_distance_m": {
+          "minimum": 0,
+          "title": "Downwind Distance M",
+          "type": "number"
+        },
+        "crosswind_distance_m": {
+          "title": "Crosswind Distance M",
+          "type": "number"
+        },
+        "height_m": {
+          "minimum": 0,
+          "title": "Height M",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "downwind_distance_m",
+        "crosswind_distance_m",
+        "height_m"
+      ],
+      "title": "DenseReceptor",
+      "type": "object"
+    },
+    "ReleaseHistory": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "ccps.release-history.v1",
+          "default": "ccps.release-history.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "asset_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "scenario_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "operating_case_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Operating Case Id",
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "prism",
+            "user_supplied"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "source_digest": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Digest",
+          "type": "string"
+        },
+        "source_code_digest": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Code Digest",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "mode": {
+          "enum": [
+            "finite",
+            "continuous_through_window"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "intervals": {
+          "items": {
+            "$ref": "#/$defs/ReleaseInterval"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "title": "Intervals",
+          "type": "array"
+        },
+        "declared_mass_within_history_kg": {
+          "exclusiveMinimum": 0,
+          "title": "Declared Mass Within History Kg",
+          "type": "number"
+        },
+        "area_m2": {
+          "exclusiveMinimum": 0,
+          "title": "Area M2",
+          "type": "number"
+        },
+        "temperature_k": {
+          "exclusiveMinimum": 0,
+          "title": "Temperature K",
+          "type": "number"
+        },
+        "qualification_basis": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Qualification Basis",
+          "type": "string"
+        },
+        "boundary": {
+          "const": "qualified_ground_level_thermalized_pure_vapour",
+          "title": "Boundary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "asset_id",
+        "scenario_id",
+        "operating_case_id",
+        "origin",
+        "source_digest",
+        "source_code_digest",
+        "evidence_ids",
+        "mode",
+        "intervals",
+        "declared_mass_within_history_kg",
+        "area_m2",
+        "temperature_k",
+        "qualification_basis",
+        "boundary"
+      ],
+      "title": "ReleaseHistory",
+      "type": "object"
+    },
+    "ReleaseInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "start_s": {
+          "minimum": 0,
+          "title": "Start S",
+          "type": "number"
+        },
+        "end_s": {
+          "exclusiveMinimum": 0,
+          "title": "End S",
+          "type": "number"
+        },
+        "mass_rate_kg_s": {
+          "minimum": 0,
+          "title": "Mass Rate Kg S",
+          "type": "number"
+        }
+      },
+      "required": [
+        "start_s",
+        "end_s",
+        "mass_rate_kg_s"
+      ],
+      "title": "ReleaseInterval",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "source": {
+      "$ref": "#/$defs/ReleaseHistory"
+    },
+    "temperature_k": {
+      "exclusiveMinimum": 0,
+      "title": "Temperature K",
+      "type": "number"
+    },
+    "air_density_kg_m3": {
+      "exclusiveMinimum": 0,
+      "title": "Air Density Kg M3",
+      "type": "number"
+    },
+    "pure_vapour_density_kg_m3": {
+      "exclusiveMinimum": 0,
+      "title": "Pure Vapour Density Kg M3",
+      "type": "number"
+    },
+    "density_basis": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Density Basis",
+      "type": "string"
+    },
+    "x_min_m": {
+      "title": "X Min M",
+      "type": "number"
+    },
+    "x_max_m": {
+      "title": "X Max M",
+      "type": "number"
+    },
+    "cells": {
+      "maximum": 2000,
+      "minimum": 20,
+      "title": "Cells",
+      "type": "integer"
+    },
+    "width_m": {
+      "exclusiveMinimum": 0,
+      "title": "Width M",
+      "type": "number"
+    },
+    "source_start_m": {
+      "title": "Source Start M",
+      "type": "number"
+    },
+    "wind_speed_m_s": {
+      "title": "Wind Speed M S",
+      "type": "number"
+    },
+    "injection_velocity_m_s": {
+      "title": "Injection Velocity M S",
+      "type": "number"
+    },
+    "wind_relaxation_time_s": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Wind Relaxation Time S"
+    },
+    "entrainment_coefficient": {
+      "maximum": 0.5,
+      "minimum": 0,
+      "title": "Entrainment Coefficient",
+      "type": "number"
+    },
+    "closure_basis": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Closure Basis",
+      "type": "string"
+    },
+    "gravity_m_s2": {
+      "exclusiveMinimum": 0,
+      "title": "Gravity M S2",
+      "type": "number"
+    },
+    "maximum_step_s": {
+      "exclusiveMinimum": 0,
+      "title": "Maximum Step S",
+      "type": "number"
+    },
+    "cfl": {
+      "exclusiveMinimum": 0,
+      "maximum": 0.45,
+      "title": "Cfl",
+      "type": "number"
+    },
+    "maximum_steps": {
+      "default": 40000,
+      "maximum": 200000,
+      "minimum": 10,
+      "title": "Maximum Steps",
+      "type": "integer"
+    },
+    "sample_times_s": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "maxItems": 2001,
+      "minItems": 2,
+      "title": "Sample Times S",
+      "type": "array"
+    },
+    "receptors": {
+      "items": {
+        "$ref": "#/$defs/DenseReceptor"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Receptors",
+      "type": "array"
+    },
+    "tail_threshold_kg_m3": {
+      "exclusiveMinimum": 0,
+      "title": "Tail Threshold Kg M3",
+      "type": "number"
+    },
+    "boundary": {
+      "enum": [
+        "open_vacuum",
+        "reflecting"
+      ],
+      "title": "Boundary",
+      "type": "string"
+    },
+    "applicability": {
+      "const": "research_1d_isothermal_fixed_width_flat_ground_layer",
+      "title": "Applicability",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source",
+    "temperature_k",
+    "air_density_kg_m3",
+    "pure_vapour_density_kg_m3",
+    "density_basis",
+    "x_min_m",
+    "x_max_m",
+    "cells",
+    "width_m",
+    "source_start_m",
+    "wind_speed_m_s",
+    "injection_velocity_m_s",
+    "wind_relaxation_time_s",
+    "entrainment_coefficient",
+    "closure_basis",
+    "gravity_m_s2",
+    "maximum_step_s",
+    "cfl",
+    "sample_times_s",
+    "receptors",
+    "tail_threshold_kg_m3",
+    "boundary",
+    "applicability"
+  ],
+  "title": "CoupledInput",
+  "type": "object"
+}

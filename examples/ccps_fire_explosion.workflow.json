@@ -1,0 +1,127 @@
+{
+  "schema_version": "ccps.workflow.v1",
+  "context": {
+    "asset_id": "synthetic-tank",
+    "scenario_id": "gas-leak",
+    "operating_case_id": "normal",
+    "mode": "synthetic",
+    "evidence": [
+      {
+        "id": "synthetic-input",
+        "kind": "synthetic",
+        "citation": "New analytic fixture",
+        "locator": "examples/ccps_fire_explosion.workflow.json",
+        "sha256": null,
+        "url": null
+      }
+    ]
+  },
+  "steps": [
+    {
+      "id": "fireball",
+      "calculation_id": "fire/fireball",
+      "inputs": {
+        "participating_mass_kg": 8.0,
+        "mass_basis": "Synthetic participating fuel",
+        "correlation": "noaa_2013_roberts_diameter_dutch_duration"
+      }
+    },
+    {
+      "id": "sphere",
+      "calculation_id": "fire/sphere-radiation",
+      "inputs": {
+        "diameter_m": {
+          "$ref": "fireball.diameter_m"
+        },
+        "horizontal_distance_m": 20.0,
+        "surface_emissive_power_w_m2": 120000.0,
+        "transmissivity": 0.8,
+        "emissive_power_basis": "Synthetic supplied power",
+        "geometry": "ground_tangent_sphere_ground_level_vertical_receptor"
+      }
+    },
+    {
+      "id": "solid",
+      "calculation_id": "fire/solid-flame",
+      "inputs": {
+        "surface_emissive_power_w_m2": 120000.0,
+        "view_factor": {
+          "$ref": "sphere.view_factor"
+        },
+        "transmissivity": 0.8,
+        "emissive_power_basis": "Synthetic supplied power",
+        "view_factor_basis": "Explicit sphere geometry",
+        "applicability": "supplied_solid_flame_geometry"
+      }
+    },
+    {
+      "id": "thermal_dose",
+      "calculation_id": "effects/dose",
+      "inputs": {
+        "values": [
+          {
+            "$ref": "sphere.heat_flux_w_m2"
+          }
+        ],
+        "durations_s": [
+          {
+            "$ref": "fireball.duration_s"
+          }
+        ],
+        "exponent": 1.0,
+        "reference_value": 1000.0,
+        "reference_unit": "W/m2"
+      }
+    },
+    {
+      "id": "pool",
+      "calculation_id": "fire/pool-energy",
+      "inputs": {
+        "area_m2": 10.0,
+        "burning_flux_kg_m2_s": 0.05,
+        "inventory_kg": 100.0,
+        "duration_s": 100.0,
+        "heat_of_combustion_j_kg": 30000000.0,
+        "combustion_efficiency": 0.9,
+        "burning_flux_basis": "Synthetic supplied burning flux",
+        "applicability": "constant_area_constant_burning_flux_no_replenishment"
+      }
+    },
+    {
+      "id": "pool_flux",
+      "calculation_id": "effects/radiation",
+      "inputs": {
+        "heat_release_rate_w": {
+          "$ref": "pool.heat_release_rate_w"
+        },
+        "radiative_fraction": 0.2,
+        "transmissivity": 0.8,
+        "distance_m": 20.0,
+        "applicability": "far_field_isotropic_point_source"
+      }
+    },
+    {
+      "id": "blast_endpoint",
+      "calculation_id": "explosion/epa-1psi",
+      "inputs": {
+        "flammable_mass_kg": 10.0,
+        "heat_of_combustion_j_kg": 4680000.0,
+        "mass_basis": "Synthetic vapour cloud",
+        "applicability": "epa_1999_worst_case_vapour_cloud_1psi"
+      }
+    },
+    {
+      "id": "dense_screen",
+      "calculation_id": "dispersion/richardson-screen",
+      "inputs": {
+        "cloud_density_kg_m3": 3.0,
+        "air_density_kg_m3": 1.2,
+        "characteristic_dimension_m": 0.2,
+        "friction_velocity_m_s": 0.3,
+        "gravity_m_s2": 9.80665,
+        "characteristic_dimension_basis": "Synthetic supplied height",
+        "applicability": "noaa_2013_friction_richardson_screen"
+      }
+    }
+  ]
+}

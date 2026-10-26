@@ -1,0 +1,519 @@
+{
+  "calculations": [
+    {
+      "calculation_id": "source/liquid",
+      "python_path": "ccps_consequence.source.liquid",
+      "sections": [
+        "2.1"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Nonflashing incompressible orifice only; no pipe friction, hydrostatic head or transient depletion."
+      ],
+      "test": "tests/test_ccps_physics.py::test_liquid_and_inventory",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "source/gas",
+      "python_path": "ccps_consequence.source.gas",
+      "sections": [
+        "2.1"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Ideal gas, fixed stagnation state, short orifice; no real gas, two-phase or pipe model."
+      ],
+      "test": "tests/test_ccps_physics.py::test_gas_regimes_and_continuity",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "source/inventory",
+      "python_path": "ccps_consequence.source.inventory",
+      "sections": [
+        "2.1"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Constant rate clipped to inventory; not a transient pressure or replenishment model."
+      ],
+      "test": "tests/test_ccps_physics.py::test_liquid_and_inventory",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "source/flash",
+      "python_path": "ccps_consequence.source.flash",
+      "sections": [
+        "2.2"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Constant-property sensible-heat approximation; no EOS, aerosol entrainment or two-phase flow."
+      ],
+      "test": "tests/test_ccps_physics.py::test_flash_and_evaporation_mass_balance",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "source/evaporation",
+      "python_path": "ccps_consequence.source.evaporation",
+      "sections": [
+        "2.2"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "User-supplied constant mass flux; no pool energy balance or spreading correlation."
+      ],
+      "test": "tests/test_ccps_physics.py::test_flash_and_evaporation_mass_balance",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "dispersion/plume",
+      "python_path": "ccps_consequence.dispersion.plume",
+      "sections": [
+        "2.3.1"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Passive steady open terrain with ground reflection; user owns sigma/distance consistency; no dense gas, buildings or finite-duration front."
+      ],
+      "test": "tests/test_ccps_physics.py::test_gaussian_identities",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "dispersion/puff",
+      "python_path": "ccps_consequence.dispersion.puff",
+      "sections": [
+        "2.3.1"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Passive instantaneous puff with ground reflection; supplied sigmas; no dense gas or deposition."
+      ],
+      "test": "tests/test_ccps_physics.py::test_gaussian_identities",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "effects/radiation",
+      "python_path": "ccps_consequence.effects.radiation",
+      "sections": [
+        "3.6",
+        "3.7",
+        "4.3"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Far-field point-source screening only; no flame geometry, jet trajectory or near-field prediction."
+      ],
+      "test": "tests/test_ccps_physics.py::test_radiation_inverse_square",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "effects/dose",
+      "python_path": "ccps_consequence.effects.dose",
+      "sections": [
+        "4.1",
+        "4.2",
+        "4.3"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Piecewise-constant normalized exposure; coefficients must use the same concentration/flux and time reference."
+      ],
+      "test": "tests/test_ccps_physics.py::test_dose_and_probit",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "effects/probit",
+      "python_path": "ccps_consequence.effects.probit",
+      "sections": [
+        "4.1"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "User-supplied dimensionless-log convention and coefficients; no toxicity database or endpoint certification."
+      ],
+      "test": "tests/test_ccps_physics.py::test_dose_and_probit",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "effects/tnt-scaling",
+      "python_path": "ccps_consequence.effects.tnt",
+      "sections": [
+        "3.1"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Energy equivalence and scaled distance only; no blast pressure curve, congestion, confinement or impulse."
+      ],
+      "test": "tests/test_ccps_physics.py::test_tnt_and_threshold",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "effects/threshold",
+      "python_path": "ccps_consequence.effects.threshold",
+      "sections": [
+        "4.2",
+        "4.3",
+        "4.4"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Single receptor threshold comparison; not a contour, fatality probability or exposure-duration criterion."
+      ],
+      "test": "tests/test_ccps_physics.py::test_tnt_and_threshold",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "risk/conditional",
+      "python_path": "ccps_consequence.risk.risk",
+      "sections": [
+        "1.2"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "One LOC scenario, one receptor and explicit branch partition; no facility total or dependence inference."
+      ],
+      "test": "tests/test_ccps_physics.py::test_risk_ownership_and_partition",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "dispersion/richardson-screen",
+      "python_path": "ccps_consequence.dispersion.richardson",
+      "sections": [
+        "2.3.2"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Friction Richardson diagnostic only; supplied characteristic dimension and friction velocity; no concentration solver or automatic Gaussian routing."
+      ],
+      "test": "tests/test_ccps_physics.py::test_richardson_screen",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "https://response.restoration.noaa.gov/sites/default/files/ALOHA_Tech_Doc.pdf#page=54",
+        "https://response.restoration.noaa.gov/sites/default/files/ALOHA_Tech_Doc.pdf#page=55"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "fire/fireball",
+      "python_path": "ccps_consequence.fire.fireball",
+      "sections": [
+        "3.4"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Public empirical size/duration only; caller supplies participating mass; 0 < mass <= 5e6 kg; no rupture, flash fraction, lift-off or pressurized-gas applicability claim."
+      ],
+      "test": "tests/test_ccps_physics.py::test_fireball_public_correlations",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "https://response.restoration.noaa.gov/sites/default/files/ALOHA_Tech_Doc.pdf#page=75",
+        "https://response.restoration.noaa.gov/sites/default/files/ALOHA_Tech_Doc.pdf#page=76",
+        "https://response.restoration.noaa.gov/sites/default/files/ALOHA_Tech_Doc.pdf#page=77"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "fire/solid-flame",
+      "python_path": "ccps_consequence.fire.solid_flame",
+      "sections": [
+        "3.4",
+        "3.6",
+        "3.7",
+        "4.3"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Supplied emissive power, view factor and transmissivity only; no pool/jet flame geometry or fuel database."
+      ],
+      "test": "tests/test_ccps_physics.py::test_solid_flame_bounds",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "https://response.restoration.noaa.gov/sites/default/files/ALOHA_Tech_Doc.pdf#page=73"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "fire/sphere-radiation",
+      "python_path": "ccps_consequence.fire.sphere",
+      "sections": [
+        "3.4",
+        "4.3"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Ground-tangent sphere and ground-level facing vertical receptor, horizontal distance > radius only; no shielding, lift-off or automatic emissive power."
+      ],
+      "test": "tests/test_ccps_physics.py::test_sphere_radiation_geometry",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "https://response.restoration.noaa.gov/sites/default/files/ALOHA_Tech_Doc.pdf#page=77"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "fire/pool-energy",
+      "python_path": "ccps_consequence.fire.pool",
+      "sections": [
+        "3.6"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Conservation wrapper with supplied burning flux, constant area and no replenishment; active HRR not an interval average; no burning-flux or flame-height correlation."
+      ],
+      "test": "tests/test_ccps_physics.py::test_pool_energy_balance",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "https://response.restoration.noaa.gov/sites/default/files/ALOHA_Tech_Doc.pdf#page=73",
+        "Conservation of mass and energy; independently authored finite-inventory wrapper"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "explosion/epa-1psi",
+      "python_path": "ccps_consequence.explosion.epa_one_psi",
+      "sections": [
+        "3.1",
+        "4.4"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "EPA 1999 C-1 worst-case screening: fixed 10% yield, 4.68 MJ/kg TNT energy, 1 psi endpoint only; not an arbitrary-pressure curve, confinement model or regulatory compliance determination."
+      ],
+      "test": "tests/test_ccps_physics.py::test_epa_one_psi_endpoint",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "https://www.epa.gov/sites/default/files/2017-05/documents/oca-apds.pdf#page=19"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "dispersion/slabx-instantaneous",
+      "python_path": "ccps_consequence.dense.run_dense",
+      "sections": [
+        "2.3.2",
+        "4.2"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "optional_slabx_and_authored_reconstruction",
+      "execution_kind": "optional_slabx_worker",
+      "limitations": [
+        "Optional pinned SLABx 1.0.8, instantaneous dense pure vapour at ground level only; flat terrain, no meander. Reconstructed ensemble histories, sampled peaks/integrals and finite-window tail diagnostics; no continuous source, droplets, LH2 correction or field validation."
+      ],
+      "test": "tests/test_ccps_dense.py::test_real_dense_history",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "https://www.epa.gov/scram/air-quality-dispersion-modeling-alternative-models#slab",
+        "https://github.com/lyullee/slabx",
+        "Ermak 1990 UCRL-MA-105607 sections 2.3.2 and 2.4, equations 15-28; normalized similarity reconstruction"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_real_engine_and_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "dispersion/history-dose",
+      "python_path": "ccps_consequence.dense.integrate_history",
+      "sections": [
+        "4.1",
+        "4.2"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "independently_authored_public_physics",
+      "execution_kind": "native_primitive",
+      "limitations": [
+        "Trapezoid quadrature of powered sampled concentrations over the supplied window only; no tail extrapolation, toxicity coefficients or exact unsampled peak/integral claim."
+      ],
+      "test": "tests/test_ccps_dense.py::test_history_dose_trapezoid",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "Independent trapezoid quadrature; normalized exposure integral"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "dispersion/slabx-release-history",
+      "python_path": "ccps_consequence.release_history.run_release_history",
+      "sections": [
+        "2.3.2",
+        "4.2"
+      ],
+      "coverage": "public_primitive_partial",
+      "method_origin": "optional_slabx_and_authored_reconstruction",
+      "execution_kind": "optional_slabx_worker",
+      "limitations": [
+        "Pinned SLABx constant ground-vapour segments; finite plume-to-puff and continuous-through-window modes. Pretransition growing-cloud reconstruction and independent segment superposition are explicit approximations, not a coupled arbitrary-rate solver. No jet momentum, droplets, LH2 corrections or cloud interaction."
+      ],
+      "test": "tests/test_ccps_release_history.py::test_real_finite_plume_to_puff",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "https://www.epa.gov/scram/air-quality-dispersion-modeling-alternative-models#slab",
+        "https://github.com/lyullee/slabx",
+        "Ermak 1990 equations 29-30; own mass-normalized quasi-steady pretransition closure"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_real_engine_and_analytic",
+        "external_evaluation": false
+      }
+    },
+    {
+      "calculation_id": "dispersion/coupled-layer-1d",
+      "python_path": "ccps_consequence.coupled.solve_coupled",
+      "sections": [
+        "2.3.2",
+        "4.2"
+      ],
+      "coverage": "restricted_research_1d",
+      "method_origin": "authored_restricted_research_pde",
+      "execution_kind": "coupled_research",
+      "limitations": [
+        "Research 1D isothermal fixed-width vertically mixed layer: shared mixture/species/momentum finite-volume field with composition-dependent hydrostatic pressure. User-qualified densities, entrainment and wind relaxation; no energy equation, 2D spreading, obstacles, droplets or field validation. Not a SLAB/TWODEE implementation."
+      ],
+      "test": "tests/test_ccps_coupled.py::test_coupled_mass_and_interaction",
+      "public_context_reference": "https://repository.library.noaa.gov/view/noaa/2669",
+      "method_references": [
+        "https://doi.org/10.1029/2007GC001762",
+        "https://arxiv.org/abs/2101.04384",
+        "https://www.clawpack.org/v5.12.x/riemann/Shallow_water_Riemann_solvers.html",
+        "Own isothermal additive-volume closure, reduced hydrostatic pressure and first-order Rusanov implementation"
+      ],
+      "validation_evidence": {
+        "kind": "synthetic_numerical_conservation_convergence",
+        "external_evaluation": false
+      }
+    }
+  ],
+  "deferred_sections": {
+    "2.3.2": "slabx_and_research_1d_coupled_available_2d_nonisothermal_models_external",
+    "3.2": "flash_fire_geometry_external_provider",
+    "3.3": "physical_explosion_external_provider",
+    "3.4": "bleve_rupture_and_full_fireball_dynamics_external_provider_partial_geometry_native",
+    "3.5": "confined_explosion_external_provider",
+    "5": "evacuation_external_provider",
+    "6": "external_model_system_boundary"
+  }
+}

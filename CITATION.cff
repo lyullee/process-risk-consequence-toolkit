@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite this independently authored software when used."
+type: software
+title: "Process Risk Consequence Toolkit"
+version: 0.1.0
+date-released: 2026-10-26
+authors:
+  - family-names: Lee
+    given-names: Ugwiyeon
+license: Apache-2.0
+repository-code: "https://github.com/lyullee/process-risk-consequence-toolkit"
+url: "https://github.com/lyullee/process-risk-consequence-toolkit"
+abstract: "Traceable SI consequence screening, optional dense-gas histories, and an explicitly restricted coupled-layer research model. Not an official CCPS or AIChE product."
+keywords:
+  - process safety
+  - consequence analysis
+  - dense gas
+  - reproducible software

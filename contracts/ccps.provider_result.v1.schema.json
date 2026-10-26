@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "ccps.provider-result.v1",
+      "default": "ccps.provider-result.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "request_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Request Digest",
+      "type": "string"
+    },
+    "engine": {
+      "enum": [
+        "api581",
+        "prism",
+        "user_supplied"
+      ],
+      "title": "Engine",
+      "type": "string"
+    },
+    "model_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Model Id",
+      "type": "string"
+    },
+    "engine_version": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Engine Version",
+      "type": "string"
+    },
+    "engine_code_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Engine Code Digest",
+      "type": "string"
+    },
+    "receptor_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Receptor Id",
+      "type": "string"
+    },
+    "quantity": {
+      "enum": [
+        "concentration_kg_m3",
+        "heat_flux_w_m2",
+        "overpressure_pa",
+        "harm_probability"
+      ],
+      "title": "Quantity",
+      "type": "string"
+    },
+    "value": {
+      "minimum": 0,
+      "title": "Value",
+      "type": "number"
+    },
+    "evidence_ids": {
+      "items": {
+        "maxLength": 160,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 160,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "validation_status": {
+      "const": "provider_reported_unverified",
+      "default": "provider_reported_unverified",
+      "title": "Validation Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_digest",
+    "engine",
+    "model_id",
+    "engine_version",
+    "engine_code_digest",
+    "receptor_id",
+    "quantity",
+    "value",
+    "evidence_ids",
+    "limitations"
+  ],
+  "title": "ProviderResult",
+  "type": "object"
+}

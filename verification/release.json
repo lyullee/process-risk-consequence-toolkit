@@ -1,0 +1,25 @@
+{
+  "distribution": "process-risk-consequence-toolkit",
+  "version": "0.1.0",
+  "date": "2026-10-26",
+  "license": "Apache-2.0",
+  "author": "Ugwiyeon Lee",
+  "source_code_digest": "4b01026a3280598ad2e25509dae9c4b8cc521fcf27d8fb3adb54c4a0fd4ac880",
+  "registered_calculations": 23,
+  "portable_tests": {
+    "passed": 84,
+    "failed": 0,
+    "skipped": 0
+  },
+  "versions": {
+    "pydantic": "2.14.1",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "slabx": "1.0.8",
+    "fastapi": "0.115.6",
+    "pytest": "8.4.2"
+  },
+  "test_scope": "Standalone portable suite, not the original 183 host tests",
+  "physical_validation_claim": false,
+  "legal_guarantee": false
+}

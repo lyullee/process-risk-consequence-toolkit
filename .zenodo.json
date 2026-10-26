@@ -1,0 +1,11 @@
+{
+  "title": "Process Risk Consequence Toolkit",
+  "upload_type": "software",
+  "description": "Independently authored Python consequence screening with 23 typed calculations, JSON Schemas, reproducible receipts, workflows, optional SLABx histories and a restricted 1D isothermal coupled-layer research solver. No purchased standards, source documents, external-engine code or field observations are included. Not affiliated with or certified by CCPS/AIChE. Synthetic numerical verification is not field validation.",
+  "creators": [{"name": "Lee, Ugwiyeon"}],
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "access_right": "open",
+  "keywords": ["process safety", "consequence analysis", "dense gas", "research software"],
+  "related_identifiers": [{"identifier": "https://github.com/lyullee/process-risk-consequence-toolkit", "relation": "isSupplementTo", "scheme": "url"}]
+}

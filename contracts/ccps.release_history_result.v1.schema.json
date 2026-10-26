@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "DenseHistory": {
+      "additionalProperties": false,
+      "properties": {
+        "receptor_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Receptor Id",
+          "type": "string"
+        },
+        "concentration_kg_m3": {
+          "items": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Concentration Kg M3",
+          "type": "array"
+        },
+        "volume_fraction": {
+          "items": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Volume Fraction",
+          "type": "array"
+        },
+        "sampled_peak_kg_m3": {
+          "minimum": 0,
+          "title": "Sampled Peak Kg M3",
+          "type": "number"
+        },
+        "sampled_peak_time_s": {
+          "minimum": 0,
+          "title": "Sampled Peak Time S",
+          "type": "number"
+        },
+        "sampled_integral_kg_s_m3": {
+          "minimum": 0,
+          "title": "Sampled Integral Kg S M3",
+          "type": "number"
+        },
+        "tail_status": {
+          "enum": [
+            "end_above_threshold",
+            "end_below_threshold_peak_at_end",
+            "end_below_threshold"
+          ],
+          "title": "Tail Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "receptor_id",
+        "concentration_kg_m3",
+        "volume_fraction",
+        "sampled_peak_kg_m3",
+        "sampled_peak_time_s",
+        "sampled_integral_kg_s_m3",
+        "tail_status"
+      ],
+      "title": "DenseHistory",
+      "type": "object"
+    },
+    "SegmentLedger": {
+      "additionalProperties": false,
+      "properties": {
+        "start_s": {
+          "minimum": 0,
+          "title": "Start S",
+          "type": "number"
+        },
+        "stop_s": {
+          "exclusiveMinimum": 0,
+          "title": "Stop S",
+          "type": "number"
+        },
+        "rate_kg_s": {
+          "exclusiveMinimum": 0,
+          "title": "Rate Kg S",
+          "type": "number"
+        },
+        "mode": {
+          "enum": [
+            "finite",
+            "continuous_through_window"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "source_mass_within_window_kg": {
+          "exclusiveMinimum": 0,
+          "title": "Source Mass Within Window Kg",
+          "type": "number"
+        },
+        "transition_time_s": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Transition Time S"
+        },
+        "transition_x_m": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Transition X M"
+        },
+        "native_final_time_s": {
+          "minimum": 0,
+          "title": "Native Final Time S",
+          "type": "number"
+        },
+        "used_source_area_m2": {
+          "exclusiveMinimum": 0,
+          "title": "Used Source Area M2",
+          "type": "number"
+        },
+        "maximum_puff_mass_relative_residual": {
+          "minimum": 0,
+          "title": "Maximum Puff Mass Relative Residual",
+          "type": "number"
+        },
+        "maximum_plume_flux_relative_residual": {
+          "minimum": 0,
+          "title": "Maximum Plume Flux Relative Residual",
+          "type": "number"
+        },
+        "transition_mass_relative_residual": {
+          "minimum": 0,
+          "title": "Transition Mass Relative Residual",
+          "type": "number"
+        },
+        "native_transition_flux_relative_residual": {
+          "minimum": 0,
+          "title": "Native Transition Flux Relative Residual",
+          "type": "number"
+        },
+        "native_duplicate_clock_rows_removed": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Native Duplicate Clock Rows Removed",
+          "type": "integer"
+        },
+        "native_times_s": {
+          "items": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Native Times S",
+          "type": "array"
+        },
+        "native_clock_kind": {
+          "enum": [
+            "plume_twice_integrated_mass_over_rate",
+            "plume_release_clock_then_puff"
+          ],
+          "title": "Native Clock Kind",
+          "type": "string"
+        },
+        "native_modes": {
+          "items": {
+            "enum": [
+              "plume",
+              "puff"
+            ],
+            "type": "string"
+          },
+          "title": "Native Modes",
+          "type": "array"
+        },
+        "native_center_x_m": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Native Center X M",
+          "type": "array"
+        },
+        "accounted_emission_mass_kg": {
+          "items": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Accounted Emission Mass Kg",
+          "type": "array"
+        }
+      },
+      "required": [
+        "start_s",
+        "stop_s",
+        "rate_kg_s",
+        "mode",
+        "source_mass_within_window_kg",
+        "transition_time_s",
+        "transition_x_m",
+        "native_final_time_s",
+        "used_source_area_m2",
+        "maximum_puff_mass_relative_residual",
+        "maximum_plume_flux_relative_residual",
+        "transition_mass_relative_residual",
+        "native_transition_flux_relative_residual",
+        "native_times_s",
+        "native_clock_kind",
+        "native_modes",
+        "native_center_x_m",
+        "accounted_emission_mass_kg"
+      ],
+      "title": "SegmentLedger",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "engine": {
+      "const": "slabx",
+      "default": "slabx",
+      "title": "Engine",
+      "type": "string"
+    },
+    "engine_version": {
+      "const": "1.0.8",
+      "default": "1.0.8",
+      "title": "Engine Version",
+      "type": "string"
+    },
+    "engine_code_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Engine Code Digest",
+      "type": "string"
+    },
+    "dependency_versions": {
+      "additionalProperties": {
+        "maxLength": 160,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Dependency Versions",
+      "type": "object"
+    },
+    "request_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Request Digest",
+      "type": "string"
+    },
+    "sample_times_s": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Sample Times S",
+      "type": "array"
+    },
+    "histories": {
+      "items": {
+        "$ref": "#/$defs/DenseHistory"
+      },
+      "title": "Histories",
+      "type": "array"
+    },
+    "cumulative_emitted_mass_kg": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Cumulative Emitted Mass Kg",
+      "type": "array"
+    },
+    "reconstructed_cloud_mass_kg": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Reconstructed Cloud Mass Kg",
+      "type": "array"
+    },
+    "source_mass_within_window_kg": {
+      "exclusiveMinimum": 0,
+      "title": "Source Mass Within Window Kg",
+      "type": "number"
+    },
+    "maximum_reconstruction_mass_relative_residual": {
+      "minimum": 0,
+      "title": "Maximum Reconstruction Mass Relative Residual",
+      "type": "number"
+    },
+    "segments": {
+      "items": {
+        "$ref": "#/$defs/SegmentLedger"
+      },
+      "title": "Segments",
+      "type": "array"
+    },
+    "source_active_at_window_end": {
+      "title": "Source Active At Window End",
+      "type": "boolean"
+    },
+    "coupling": {
+      "const": "independent_constant_segments_no_cloud_interaction",
+      "default": "independent_constant_segments_no_cloud_interaction",
+      "title": "Coupling",
+      "type": "string"
+    },
+    "reconstruction": {
+      "const": "finite_growing_cloud_native_puff_or_continuous_conservative_filling_plume",
+      "default": "finite_growing_cloud_native_puff_or_continuous_conservative_filling_plume",
+      "title": "Reconstruction",
+      "type": "string"
+    },
+    "physical_validation_claim": {
+      "const": false,
+      "default": false,
+      "title": "Physical Validation Claim",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "engine_code_digest",
+    "dependency_versions",
+    "request_digest",
+    "sample_times_s",
+    "histories",
+    "cumulative_emitted_mass_kg",
+    "reconstructed_cloud_mass_kg",
+    "source_mass_within_window_kg",
+    "maximum_reconstruction_mass_relative_residual",
+    "segments",
+    "source_active_at_window_end"
+  ],
+  "title": "ReleaseHistoryOutput",
+  "type": "object"
+}

@@ -1,0 +1,293 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "Context": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "scenario_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "operating_case_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Operating Case Id",
+          "type": "string"
+        },
+        "mode": {
+          "default": "synthetic",
+          "enum": [
+            "synthetic",
+            "engineering_review_required"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "evidence": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "asset_id",
+        "scenario_id",
+        "operating_case_id"
+      ],
+      "title": "Context",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "public_reference",
+            "synthetic",
+            "user_supplied"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "citation": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Citation",
+          "type": "string"
+        },
+        "locator": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Locator",
+          "type": "string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "citation",
+        "locator"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "ExternalSource": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "ccps.external-source.v1",
+          "default": "ccps.external-source.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "asset_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "scenario_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "operating_case_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Operating Case Id",
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "api581",
+            "prism",
+            "user_supplied"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "source_digest": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Digest",
+          "type": "string"
+        },
+        "source_code_digest": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Code Digest",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "phase": {
+          "enum": [
+            "vapour",
+            "liquid",
+            "two_phase"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "mass_rate_kg_s": {
+          "minimum": 0,
+          "title": "Mass Rate Kg S",
+          "type": "number"
+        },
+        "duration_s": {
+          "minimum": 0,
+          "title": "Duration S",
+          "type": "number"
+        },
+        "released_mass_kg": {
+          "minimum": 0,
+          "title": "Released Mass Kg",
+          "type": "number"
+        },
+        "history_basis": {
+          "const": "constant_rate",
+          "title": "History Basis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "asset_id",
+        "scenario_id",
+        "operating_case_id",
+        "origin",
+        "source_digest",
+        "source_code_digest",
+        "evidence_ids",
+        "phase",
+        "mass_rate_kg_s",
+        "duration_s",
+        "released_mass_kg",
+        "history_basis"
+      ],
+      "title": "ExternalSource",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "ccps.provider-request.v1",
+      "default": "ccps.provider-request.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "context": {
+      "$ref": "#/$defs/Context"
+    },
+    "source": {
+      "$ref": "#/$defs/ExternalSource"
+    },
+    "engine": {
+      "enum": [
+        "api581",
+        "prism",
+        "user_supplied"
+      ],
+      "title": "Engine",
+      "type": "string"
+    },
+    "model_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Model Id",
+      "type": "string"
+    },
+    "expected_engine_code_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Expected Engine Code Digest",
+      "type": "string"
+    },
+    "receptor_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Receptor Id",
+      "type": "string"
+    },
+    "distance_m": {
+      "exclusiveMinimum": 0,
+      "title": "Distance M",
+      "type": "number"
+    },
+    "quantity": {
+      "enum": [
+        "concentration_kg_m3",
+        "heat_flux_w_m2",
+        "overpressure_pa",
+        "harm_probability"
+      ],
+      "title": "Quantity",
+      "type": "string"
+    },
+    "settings": {
+      "additionalProperties": true,
+      "title": "Settings",
+      "type": "object"
+    }
+  },
+  "required": [
+    "context",
+    "source",
+    "engine",
+    "model_id",
+    "expected_engine_code_digest",
+    "receptor_id",
+    "distance_m",
+    "quantity",
+    "settings"
+  ],
+  "title": "ProviderRequest",
+  "type": "object"
+}

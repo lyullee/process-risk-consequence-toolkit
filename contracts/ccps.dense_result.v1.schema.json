@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "DenseHistory": {
+      "additionalProperties": false,
+      "properties": {
+        "receptor_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Receptor Id",
+          "type": "string"
+        },
+        "concentration_kg_m3": {
+          "items": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Concentration Kg M3",
+          "type": "array"
+        },
+        "volume_fraction": {
+          "items": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Volume Fraction",
+          "type": "array"
+        },
+        "sampled_peak_kg_m3": {
+          "minimum": 0,
+          "title": "Sampled Peak Kg M3",
+          "type": "number"
+        },
+        "sampled_peak_time_s": {
+          "minimum": 0,
+          "title": "Sampled Peak Time S",
+          "type": "number"
+        },
+        "sampled_integral_kg_s_m3": {
+          "minimum": 0,
+          "title": "Sampled Integral Kg S M3",
+          "type": "number"
+        },
+        "tail_status": {
+          "enum": [
+            "end_above_threshold",
+            "end_below_threshold_peak_at_end",
+            "end_below_threshold"
+          ],
+          "title": "Tail Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "receptor_id",
+        "concentration_kg_m3",
+        "volume_fraction",
+        "sampled_peak_kg_m3",
+        "sampled_peak_time_s",
+        "sampled_integral_kg_s_m3",
+        "tail_status"
+      ],
+      "title": "DenseHistory",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "engine": {
+      "const": "slabx",
+      "default": "slabx",
+      "title": "Engine",
+      "type": "string"
+    },
+    "engine_version": {
+      "const": "1.0.8",
+      "default": "1.0.8",
+      "title": "Engine Version",
+      "type": "string"
+    },
+    "engine_code_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Engine Code Digest",
+      "type": "string"
+    },
+    "dependency_versions": {
+      "additionalProperties": {
+        "maxLength": 160,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Dependency Versions",
+      "type": "object"
+    },
+    "request_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Request Digest",
+      "type": "string"
+    },
+    "sample_times_s": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Sample Times S",
+      "type": "array"
+    },
+    "histories": {
+      "items": {
+        "$ref": "#/$defs/DenseHistory"
+      },
+      "title": "Histories",
+      "type": "array"
+    },
+    "native_times_s": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Native Times S",
+      "type": "array"
+    },
+    "native_center_x_m": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Native Center X M",
+      "type": "array"
+    },
+    "native_emission_mass_kg": {
+      "items": {
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "title": "Native Emission Mass Kg",
+      "type": "array"
+    },
+    "source_mass_kg": {
+      "exclusiveMinimum": 0,
+      "title": "Source Mass Kg",
+      "type": "number"
+    },
+    "maximum_mass_relative_residual": {
+      "minimum": 0,
+      "title": "Maximum Mass Relative Residual",
+      "type": "number"
+    },
+    "initial_source_density_kg_m3": {
+      "exclusiveMinimum": 0,
+      "title": "Initial Source Density Kg M3",
+      "type": "number"
+    },
+    "ambient_density_kg_m3": {
+      "exclusiveMinimum": 0,
+      "title": "Ambient Density Kg M3",
+      "type": "number"
+    },
+    "source_initial_height_m": {
+      "exclusiveMinimum": 0,
+      "title": "Source Initial Height M",
+      "type": "number"
+    },
+    "reconstruction": {
+      "const": "slab_eq28_normalized_puff_similarity_linear_state_interpolation",
+      "default": "slab_eq28_normalized_puff_similarity_linear_state_interpolation",
+      "title": "Reconstruction",
+      "type": "string"
+    },
+    "averaging": {
+      "const": "instantaneous_ensemble_mean_no_meander",
+      "default": "instantaneous_ensemble_mean_no_meander",
+      "title": "Averaging",
+      "type": "string"
+    },
+    "physical_validation_claim": {
+      "const": false,
+      "default": false,
+      "title": "Physical Validation Claim",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "engine_code_digest",
+    "dependency_versions",
+    "request_digest",
+    "sample_times_s",
+    "histories",
+    "native_times_s",
+    "native_center_x_m",
+    "native_emission_mass_kg",
+    "source_mass_kg",
+    "maximum_mass_relative_residual",
+    "initial_source_density_kg_m3",
+    "ambient_density_kg_m3",
+    "source_initial_height_m"
+  ],
+  "title": "DenseOutput",
+  "type": "object"
+}

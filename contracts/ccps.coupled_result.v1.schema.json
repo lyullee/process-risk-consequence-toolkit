@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "DenseHistory": {
+      "additionalProperties": false,
+      "properties": {
+        "receptor_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Receptor Id",
+          "type": "string"
+        },
+        "concentration_kg_m3": {
+          "items": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Concentration Kg M3",
+          "type": "array"
+        },
+        "volume_fraction": {
+          "items": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Volume Fraction",
+          "type": "array"
+        },
+        "sampled_peak_kg_m3": {
+          "minimum": 0,
+          "title": "Sampled Peak Kg M3",
+          "type": "number"
+        },
+        "sampled_peak_time_s": {
+          "minimum": 0,
+          "title": "Sampled Peak Time S",
+          "type": "number"
+        },
+        "sampled_integral_kg_s_m3": {
+          "minimum": 0,
+          "title": "Sampled Integral Kg S M3",
+          "type": "number"
+        },
+        "tail_status": {
+          "enum": [
+            "end_above_threshold",
+            "end_below_threshold_peak_at_end",
+            "end_below_threshold"
+          ],
+          "title": "Tail Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "receptor_id",
+        "concentration_kg_m3",
+        "volume_fraction",
+        "sampled_peak_kg_m3",
+        "sampled_peak_time_s",
+        "sampled_integral_kg_s_m3",
+        "tail_status"
+      ],
+      "title": "DenseHistory",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "solver": {
+      "const": "authored_1d_variable_density_rusanov_v1",
+      "default": "authored_1d_variable_density_rusanov_v1",
+      "title": "Solver",
+      "type": "string"
+    },
+    "model_status": {
+      "const": "research_numerically_verified_not_field_validated",
+      "default": "research_numerically_verified_not_field_validated",
+      "title": "Model Status",
+      "type": "string"
+    },
+    "numpy_version": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Numpy Version",
+      "type": "string"
+    },
+    "air_density_kg_m3": {
+      "exclusiveMinimum": 0,
+      "title": "Air Density Kg M3",
+      "type": "number"
+    },
+    "pure_vapour_density_kg_m3": {
+      "exclusiveMinimum": 0,
+      "title": "Pure Vapour Density Kg M3",
+      "type": "number"
+    },
+    "cell_plan_area_m2": {
+      "exclusiveMinimum": 0,
+      "title": "Cell Plan Area M2",
+      "type": "number"
+    },
+    "sample_times_s": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Sample Times S",
+      "type": "array"
+    },
+    "histories": {
+      "items": {
+        "$ref": "#/$defs/DenseHistory"
+      },
+      "title": "Histories",
+      "type": "array"
+    },
+    "cumulative_source_mass_kg": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Cumulative Source Mass Kg",
+      "type": "array"
+    },
+    "domain_emission_mass_kg": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Domain Emission Mass Kg",
+      "type": "array"
+    },
+    "escaped_emission_mass_kg": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Escaped Emission Mass Kg",
+      "type": "array"
+    },
+    "domain_mixture_mass_kg": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Domain Mixture Mass Kg",
+      "type": "array"
+    },
+    "escaped_mixture_mass_kg": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Escaped Mixture Mass Kg",
+      "type": "array"
+    },
+    "entrained_air_mass_kg": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Entrained Air Mass Kg",
+      "type": "array"
+    },
+    "emission_roundoff_correction_kg": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Emission Roundoff Correction Kg",
+      "type": "array"
+    },
+    "mixture_roundoff_correction_kg": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Mixture Roundoff Correction Kg",
+      "type": "array"
+    },
+    "maximum_emission_mass_relative_residual": {
+      "minimum": 0,
+      "title": "Maximum Emission Mass Relative Residual",
+      "type": "number"
+    },
+    "maximum_mixture_mass_relative_residual": {
+      "minimum": 0,
+      "title": "Maximum Mixture Mass Relative Residual",
+      "type": "number"
+    },
+    "maximum_absolute_roundoff_correction_kg": {
+      "minimum": 0,
+      "title": "Maximum Absolute Roundoff Correction Kg",
+      "type": "number"
+    },
+    "maximum_observed_cfl": {
+      "minimum": 0,
+      "title": "Maximum Observed Cfl",
+      "type": "number"
+    },
+    "accepted_steps": {
+      "minimum": 1,
+      "title": "Accepted Steps",
+      "type": "integer"
+    },
+    "final_cell_centers_m": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Final Cell Centers M",
+      "type": "array"
+    },
+    "final_layer_height_m": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Final Layer Height M",
+      "type": "array"
+    },
+    "final_mixture_density_kg_m3": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Final Mixture Density Kg M3",
+      "type": "array"
+    },
+    "final_velocity_m_s": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Final Velocity M S",
+      "type": "array"
+    },
+    "final_emission_column_kg_m2": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Final Emission Column Kg M2",
+      "type": "array"
+    },
+    "final_mixture_column_kg_m2": {
+      "items": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "title": "Final Mixture Column Kg M2",
+      "type": "array"
+    },
+    "source_active_at_window_end": {
+      "title": "Source Active At Window End",
+      "type": "boolean"
+    },
+    "numerical_diffusion_present": {
+      "const": true,
+      "default": true,
+      "title": "Numerical Diffusion Present",
+      "type": "boolean"
+    },
+    "physical_validation_claim": {
+      "const": false,
+      "default": false,
+      "title": "Physical Validation Claim",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "numpy_version",
+    "air_density_kg_m3",
+    "pure_vapour_density_kg_m3",
+    "cell_plan_area_m2",
+    "sample_times_s",
+    "histories",
+    "cumulative_source_mass_kg",
+    "domain_emission_mass_kg",
+    "escaped_emission_mass_kg",
+    "domain_mixture_mass_kg",
+    "escaped_mixture_mass_kg",
+    "entrained_air_mass_kg",
+    "emission_roundoff_correction_kg",
+    "mixture_roundoff_correction_kg",
+    "maximum_emission_mass_relative_residual",
+    "maximum_mixture_mass_relative_residual",
+    "maximum_absolute_roundoff_correction_kg",
+    "maximum_observed_cfl",
+    "accepted_steps",
+    "final_cell_centers_m",
+    "final_layer_height_m",
+    "final_mixture_density_kg_m3",
+    "final_velocity_m_s",
+    "final_emission_column_kg_m2",
+    "final_mixture_column_kg_m2",
+    "source_active_at_window_end"
+  ],
+  "title": "CoupledOutput",
+  "type": "object"
+}

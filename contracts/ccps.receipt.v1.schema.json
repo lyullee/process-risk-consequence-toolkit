@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "Context": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "scenario_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "operating_case_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Operating Case Id",
+          "type": "string"
+        },
+        "mode": {
+          "default": "synthetic",
+          "enum": [
+            "synthetic",
+            "engineering_review_required"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "evidence": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "asset_id",
+        "scenario_id",
+        "operating_case_id"
+      ],
+      "title": "Context",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "public_reference",
+            "synthetic",
+            "user_supplied"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "citation": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Citation",
+          "type": "string"
+        },
+        "locator": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Locator",
+          "type": "string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "citation",
+        "locator"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "ccps.receipt.v1",
+      "default": "ccps.receipt.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "calculation_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Calculation Id",
+      "type": "string"
+    },
+    "engine_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Engine Version",
+      "type": "string"
+    },
+    "context": {
+      "$ref": "#/$defs/Context"
+    },
+    "code_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Code Digest",
+      "type": "string"
+    },
+    "input_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Input Digest",
+      "type": "string"
+    },
+    "normalized_inputs": {
+      "additionalProperties": true,
+      "title": "Normalized Inputs",
+      "type": "object"
+    },
+    "outputs": {
+      "additionalProperties": true,
+      "title": "Outputs",
+      "type": "object"
+    },
+    "output_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Output Digest",
+      "type": "string"
+    },
+    "sections": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Sections",
+      "type": "array"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "method_references": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Method References",
+      "type": "array"
+    },
+    "validation_level": {
+      "default": "synthetic_analytic_tests",
+      "enum": [
+        "synthetic_analytic_tests",
+        "native_engine_executed",
+        "research_numerical_tests"
+      ],
+      "title": "Validation Level",
+      "type": "string"
+    },
+    "standard_conformity_claim": {
+      "const": false,
+      "default": false,
+      "title": "Standard Conformity Claim",
+      "type": "boolean"
+    },
+    "physical_validation_claim": {
+      "const": false,
+      "default": false,
+      "title": "Physical Validation Claim",
+      "type": "boolean"
+    },
+    "complete_facility_qra_claim": {
+      "const": false,
+      "default": false,
+      "title": "Complete Facility Qra Claim",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "calculation_id",
+    "context",
+    "code_digest",
+    "input_digest",
+    "normalized_inputs",
+    "outputs",
+    "output_digest",
+    "sections",
+    "evidence_ids",
+    "limitations"
+  ],
+  "title": "Receipt",
+  "type": "object"
+}

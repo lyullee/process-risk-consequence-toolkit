@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "scope": "source and selected wheel/sdist contents",
+  "files_scanned": 111,
+  "findings": [],
+  "archives": [
+    {
+      "file": "process_risk_consequence_toolkit-0.1.0-py3-none-any.whl",
+      "sha256": "313369868d60e6eb47136ec94b73194fb34e4fde9747f050a042c120763b6073"
+    },
+    {
+      "file": "process_risk_consequence_toolkit-0.1.0.tar.gz",
+      "sha256": "76c6d79878d4620e23cbc7299dfb2d24327a3dd578d06a644c174d4718a9829b"
+    }
+  ],
+  "legal_guarantee": false,
+  "review_boundary": "Automated exclusions/pattern scan plus documented provenance review; not a judicial opinion or exhaustive IP clearance."
+}

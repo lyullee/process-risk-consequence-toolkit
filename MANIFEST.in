@@ -1,0 +1,12 @@
+include README.md LICENSE NOTICE THIRD_PARTY_NOTICES.md CITATION.cff .zenodo.json
+recursive-include docs *.md
+recursive-include contracts *.json
+recursive-include examples *.py *.json
+recursive-include tests *.py
+recursive-include scripts *.py
+include verification/VALIDATION.md verification/release.json
+exclude verification/release-audit.json verification/source-manifest.json verification/wheel-smoke.json verification/publication.json
+global-exclude *.pdf *.docx *.pem *.key *.sqlite* *.pyc
+prune artifacts
+prune private
+prune source_materials

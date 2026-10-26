@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "Context": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "scenario_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Scenario Id",
+          "type": "string"
+        },
+        "operating_case_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Operating Case Id",
+          "type": "string"
+        },
+        "mode": {
+          "default": "synthetic",
+          "enum": [
+            "synthetic",
+            "engineering_review_required"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "evidence": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "asset_id",
+        "scenario_id",
+        "operating_case_id"
+      ],
+      "title": "Context",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "public_reference",
+            "synthetic",
+            "user_supplied"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "citation": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Citation",
+          "type": "string"
+        },
+        "locator": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Locator",
+          "type": "string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "citation",
+        "locator"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Step": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "calculation_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Calculation Id",
+          "type": "string"
+        },
+        "inputs": {
+          "additionalProperties": true,
+          "title": "Inputs",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "calculation_id",
+        "inputs"
+      ],
+      "title": "Step",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "ccps.workflow.v1",
+      "default": "ccps.workflow.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "context": {
+      "$ref": "#/$defs/Context"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/Step"
+      },
+      "title": "Steps",
+      "type": "array"
+    }
+  },
+  "required": [
+    "context",
+    "steps"
+  ],
+  "title": "Workflow",
+  "type": "object"
+}

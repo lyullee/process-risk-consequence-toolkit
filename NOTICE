@@ -1,0 +1,18 @@
+Process Risk Consequence Toolkit
+Copyright 2026 Ugwiyeon Lee
+
+This distribution contains independently authored code, documentation and
+synthetic examples licensed under the Apache License, Version 2.0.
+
+This project is not affiliated with, sponsored by, endorsed by, or certified
+by AIChE, CCPS, API, NOAA, EPA, the SLAB authors, or any referenced publisher.
+Names and bibliographic references identify methods and interoperability only.
+No third-party trademark or logo license is granted by this distribution.
+
+The historical Python namespace ccps_consequence and ccps.* schema identifiers
+are retained for compatibility. They do not identify an official CCPS product.
+No purchased standards, book text, tables, figures, worked examples, original
+SLAB Fortran, external-engine source, or field observations are distributed.
+
+Third-party dependencies are separately obtained and remain under their own
+licenses. See THIRD_PARTY_NOTICES.md and docs/COPYRIGHT_REVIEW.md.

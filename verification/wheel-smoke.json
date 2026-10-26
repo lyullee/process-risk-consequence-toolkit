@@ -1,0 +1,9 @@
+{
+  "wheel": "process_risk_consequence_toolkit-0.1.0-py3-none-any.whl",
+  "sha256": "313369868d60e6eb47136ec94b73194fb34e4fde9747f050a042c120763b6073",
+  "temporary_install": "passed",
+  "installed_api_cli_schemas": "passed",
+  "optional_native_and_coupled": "passed",
+  "pha_core_source_bundled": false,
+  "native_source_bundled": false
+}

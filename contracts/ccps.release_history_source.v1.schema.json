@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "ReleaseInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "start_s": {
+          "minimum": 0,
+          "title": "Start S",
+          "type": "number"
+        },
+        "end_s": {
+          "exclusiveMinimum": 0,
+          "title": "End S",
+          "type": "number"
+        },
+        "mass_rate_kg_s": {
+          "minimum": 0,
+          "title": "Mass Rate Kg S",
+          "type": "number"
+        }
+      },
+      "required": [
+        "start_s",
+        "end_s",
+        "mass_rate_kg_s"
+      ],
+      "title": "ReleaseInterval",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "ccps.release-history.v1",
+      "default": "ccps.release-history.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "asset_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Asset Id",
+      "type": "string"
+    },
+    "scenario_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "operating_case_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Operating Case Id",
+      "type": "string"
+    },
+    "origin": {
+      "enum": [
+        "prism",
+        "user_supplied"
+      ],
+      "title": "Origin",
+      "type": "string"
+    },
+    "source_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Source Digest",
+      "type": "string"
+    },
+    "source_code_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Source Code Digest",
+      "type": "string"
+    },
+    "evidence_ids": {
+      "items": {
+        "maxLength": 160,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "mode": {
+      "enum": [
+        "finite",
+        "continuous_through_window"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "intervals": {
+      "items": {
+        "$ref": "#/$defs/ReleaseInterval"
+      },
+      "maxItems": 128,
+      "minItems": 1,
+      "title": "Intervals",
+      "type": "array"
+    },
+    "declared_mass_within_history_kg": {
+      "exclusiveMinimum": 0,
+      "title": "Declared Mass Within History Kg",
+      "type": "number"
+    },
+    "area_m2": {
+      "exclusiveMinimum": 0,
+      "title": "Area M2",
+      "type": "number"
+    },
+    "temperature_k": {
+      "exclusiveMinimum": 0,
+      "title": "Temperature K",
+      "type": "number"
+    },
+    "qualification_basis": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Qualification Basis",
+      "type": "string"
+    },
+    "boundary": {
+      "const": "qualified_ground_level_thermalized_pure_vapour",
+      "title": "Boundary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "asset_id",
+    "scenario_id",
+    "operating_case_id",
+    "origin",
+    "source_digest",
+    "source_code_digest",
+    "evidence_ids",
+    "mode",
+    "intervals",
+    "declared_mass_within_history_kg",
+    "area_m2",
+    "temperature_k",
+    "qualification_basis",
+    "boundary"
+  ],
+  "title": "ReleaseHistory",
+  "type": "object"
+}
