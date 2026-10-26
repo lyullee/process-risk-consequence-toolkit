@@ -31,3 +31,5 @@ Software checks are not independent experimental evaluation, closure
 qualification, field/site validation or CCPS conformity. The coupled model
 retains a restricted research status. Dependency model claims are not adopted
 as this package's own certification.
+
+Remote Linux CI passed on Python 3.12 and 3.14 after separating the unpublished optional native dependency. Run: https://github.com/lyullee/process-risk-consequence-toolkit/actions/runs/40288922289 . Native-dependent tests skip in that environment; the 84-test/no-skip result above is the local full optional-dependency run.

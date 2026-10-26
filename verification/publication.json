@@ -2,7 +2,16 @@
   "github": {
     "url": "https://github.com/lyullee/process-risk-consequence-toolkit",
     "status": "published",
-    "initial_commit": "64bf14a9cbf1d951c3044bc9a27a3b43900fe0c3"
+    "initial_commit": "64bf14a9cbf1d951c3044bc9a27a3b43900fe0c3",
+    "portable_ci": {
+      "status": "success",
+      "url": "https://github.com/lyullee/process-risk-consequence-toolkit/actions/runs/40288922289",
+      "python": [
+        "3.12",
+        "3.14"
+      ],
+      "native_engine": "not installed; native-dependent tests skip"
+    }
   },
   "zenodo": {
     "url": "https://zenodo.org/records/23659682",
