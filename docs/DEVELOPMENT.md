@@ -13,7 +13,7 @@ lazy `pha_adapter`: interoperability. `cli`, optional `http_api`: user interface
 ## Reproduce from a new session
 
 ```text
-python -m pip install -e ".[dev,dense]"
+python -m pip install -e ".[dev]"
 python scripts/build_ccps_contracts.py
 python scripts/build_manual.py
 python -m pytest -q
@@ -57,4 +57,4 @@ artifacts; only sanitized evidence summaries are published.
 
 ## Publication follow-up
 
-Initial remote CI exposed that slabx 1.0.8 is locally installed but absent from public PyPI (latest listed 1.0.7). Native checks passed locally; public CI installs `.[dev]` and explicitly skips unavailable-native tests. Do not relax the pin or publish another project engine without a separate rights/release review. Zenodo 0.1.0 archives the initial verified artifacts; subsequent documentation/CI corrections are in GitHub. PyPI Trusted Publisher authorization is pending.
+Initial remote CI exposed that slabx 1.0.8 is locally installed but absent from public PyPI (latest listed 1.0.7). Native checks passed locally; public CI installs `.[dev]` and explicitly skips unavailable-native tests. Do not relax the pin or publish another project engine without a separate rights/release review. Zenodo 0.1.0 archives the initial verified artifacts; subsequent documentation/CI corrections are in GitHub. The author approved the project-scoped Trusted Publisher and PyPI 0.1.0 is published. See verification/pypi-install.json for fresh-environment proof.

@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "source": "public PyPI 0.1.0",
+  "fresh_venv_install": "base,http,coupled",
+  "checks": [
+    "archive sha256 matches PyPI metadata",
+    "23 calculation catalog",
+    "JSON schemas",
+    "inventory calculation and receipt verification",
+    "HTTP OpenAPI",
+    "NumPy import",
+    "prct console entrypoint JSON catalog"
+  ],
+  "native_dense": "not installed: pinned slabx 1.0.8 absent from public PyPI",
+  "files": [
+    {
+      "file": "process_risk_consequence_toolkit-0.1.0-py3-none-any.whl",
+      "sha256": "ca78d15bf1f0f38ba79d2381291059067380211658ca0dc2345584adb4adfd86"
+    },
+    {
+      "file": "process_risk_consequence_toolkit-0.1.0.tar.gz",
+      "sha256": "eaf6470f2fde85a821118ed619a82faedc2e23efa731519b58a912931d38beff"
+    }
+  ],
+  "publish_workflow": "https://github.com/lyullee/process-risk-consequence-toolkit/actions/runs/40291493942"
+}

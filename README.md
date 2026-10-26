@@ -18,10 +18,10 @@ engine source are distributed. [Rights review](docs/COPYRIGHT_REVIEW.md).
 ```bash
 python -m pip install process-risk-consequence-toolkit
 # Optional features, installed explicitly:
-python -m pip install 'process-risk-consequence-toolkit[http,coupled,dense]'
+python -m pip install 'process-risk-consequence-toolkit[http,coupled]'
 ```
 
-**Publication status:** [Zenodo 0.1.0](https://doi.org/10.5281/zenodo.23659682) is available. PyPI publication is pending. The optional pinned `slabx==1.0.8` engine was locally tested but is not currently published on PyPI; the dense extra cannot yet be installed from PyPI alone. Base, HTTP and coupled features do not require it. Public CI runs without the native engine and reports native tests as skips. Do not substitute another version silently.
+**Publication status:** [Zenodo 0.1.0](https://doi.org/10.5281/zenodo.23659682) is available. [PyPI 0.1.0](https://pypi.org/project/process-risk-consequence-toolkit/0.1.0/) is published and its fresh-environment installation is verified. The optional pinned `slabx==1.0.8` engine was locally tested but is not currently published on PyPI; the dense extra cannot yet be installed from PyPI alone. Base, HTTP and coupled features do not require it. Public CI runs without the native engine and reports native tests as skips. Do not substitute another version silently.
 
 Python 3.12+. Base dependency: Pydantic. `coupled` adds NumPy, `dense` adds the
 pinned separate `slabx==1.0.8` engine, and `http` adds FastAPI/Uvicorn.
@@ -112,7 +112,7 @@ Core; this distribution does not relicense or ship PHA Core or its UI/database.
 ```bash
 git clone https://github.com/lyullee/process-risk-consequence-toolkit.git
 cd process-risk-consequence-toolkit
-python -m pip install -e '.[dev,dense]'
+python -m pip install -e '.[dev]'
 python scripts/build_ccps_contracts.py
 python scripts/build_manual.py
 python -m pytest -q

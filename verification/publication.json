@@ -20,7 +20,28 @@
     "version": "0.1.0"
   },
   "pypi": {
-    "status": "pending_trusted_publisher_confirmation"
+    "status": "published",
+    "version": "0.1.0",
+    "url": "https://pypi.org/project/process-risk-consequence-toolkit/0.1.0/",
+    "workflow": "https://github.com/lyullee/process-risk-consequence-toolkit/actions/runs/40291493942",
+    "source_commit": "a864f9e6ad4db66f6e29349e1c4c35d4101ff671",
+    "trusted_publisher": {
+      "repository": "lyullee/process-risk-consequence-toolkit",
+      "workflow": "publish.yml",
+      "environment": "pypi",
+      "author_approved": true
+    },
+    "artifacts": [
+      {
+        "file": "process_risk_consequence_toolkit-0.1.0-py3-none-any.whl",
+        "sha256": "ca78d15bf1f0f38ba79d2381291059067380211658ca0dc2345584adb4adfd86"
+      },
+      {
+        "file": "process_risk_consequence_toolkit-0.1.0.tar.gz",
+        "sha256": "eaf6470f2fde85a821118ed619a82faedc2e23efa731519b58a912931d38beff"
+      }
+    ],
+    "fresh_environment_install": "passed"
   },
   "native_dependency_public_availability": {
     "slabx_1_0_8": "not_published_on_pypi",
@@ -35,5 +56,6 @@
       "file": "process_risk_consequence_toolkit-0.1.0.tar.gz",
       "sha256": "76c6d79878d4620e23cbc7299dfb2d24327a3dd578d06a644c174d4718a9829b"
     }
-  ]
+  ],
+  "archive_relationship": "Zenodo preserves the initial verified local artifacts at 64bf14a; PyPI uses the same Python source with later documentation/CI corrections at a864f9e. Archive hashes differ and are recorded separately."
 }
