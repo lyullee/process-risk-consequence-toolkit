@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
-      - run: python -m pip install -e '.[dev,dense]'
+      - run: python -m pip install -e '.[dev]'
       - run: python scripts/build_ccps_contracts.py && python scripts/build_manual.py
       - run: python -m pytest -q
       - run: python -m build && python -m twine check dist/*

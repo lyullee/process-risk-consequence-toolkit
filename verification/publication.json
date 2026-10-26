@@ -1,0 +1,30 @@
+{
+  "github": {
+    "url": "https://github.com/lyullee/process-risk-consequence-toolkit",
+    "status": "published",
+    "initial_commit": "64bf14a9cbf1d951c3044bc9a27a3b43900fe0c3"
+  },
+  "zenodo": {
+    "url": "https://zenodo.org/records/23659682",
+    "doi": "10.5281/zenodo.23659682",
+    "status": "published",
+    "version": "0.1.0"
+  },
+  "pypi": {
+    "status": "pending_trusted_publisher_confirmation"
+  },
+  "native_dependency_public_availability": {
+    "slabx_1_0_8": "not_published_on_pypi",
+    "local_native_tests": "passed"
+  },
+  "artifacts": [
+    {
+      "file": "process_risk_consequence_toolkit-0.1.0-py3-none-any.whl",
+      "sha256": "313369868d60e6eb47136ec94b73194fb34e4fde9747f050a042c120763b6073"
+    },
+    {
+      "file": "process_risk_consequence_toolkit-0.1.0.tar.gz",
+      "sha256": "76c6d79878d4620e23cbc7299dfb2d24327a3dd578d06a644c174d4718a9829b"
+    }
+  ]
+}

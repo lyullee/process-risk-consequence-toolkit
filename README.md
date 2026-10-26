@@ -21,6 +21,8 @@ python -m pip install process-risk-consequence-toolkit
 python -m pip install 'process-risk-consequence-toolkit[http,coupled,dense]'
 ```
 
+**Publication status:** [Zenodo 0.1.0](https://doi.org/10.5281/zenodo.23659682) is available. PyPI publication is pending. The optional pinned `slabx==1.0.8` engine was locally tested but is not currently published on PyPI; the dense extra cannot yet be installed from PyPI alone. Base, HTTP and coupled features do not require it. Public CI runs without the native engine and reports native tests as skips. Do not substitute another version silently.
+
 Python 3.12+. Base dependency: Pydantic. `coupled` adds NumPy, `dense` adds the
 pinned separate `slabx==1.0.8` engine, and `http` adds FastAPI/Uvicorn.
 
